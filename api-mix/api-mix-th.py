@@ -1,3 +1,6 @@
+from blend import calculate_blend
+
+
 def mainMenu():
     print("-----------------------------------------")
     print("-------   โปรเเกรม มิกซ์น้ำมัน V.1.0  -------")
@@ -18,25 +21,20 @@ def mainMenu():
 
             if selection == 1:
                 watermix_1()
-                mainMenu()
 
             elif selection == 2:
                 watermix_2()
-                mainMenu()
-                
-            if selection == 3:
+
+            elif selection == 3:
                 watermix_3()
-                mainMenu()
 
             elif selection == 4:
                 break
             else:
-                print("ใส่ตัวเลข 1-3 เท่านั้น")
-                mainMenu()
-                mainMenu()
-            
+                print("ใส่ตัวเลข 1-4 เท่านั้น")
+
         except ValueError:
-                print("ใส่ตัวเลข 1-3 เท่านั้น")
+                print("ข้อมูลไม่ถูกต้อง: กรอกตัวเลขที่มีค่าจำกัด ปริมาตรไม่ติดลบ และปริมาตรรวมมากกว่า 0")
 
 def watermix_1():
     tank1_volume = float(input("เเท้งที่1 ใส่จำนวนบาเรลในนี้: "))
@@ -45,12 +43,7 @@ def watermix_1():
     tank2_volume = float(input("เเท้งที่2 ใส่จำนวนบาเรลในนี้: "))
     tank2_api = float(input("เเท้งที่2 ใส่ค่า API : "))
 
-    cal_1 = tank1_volume * tank1_api
-    cal_2 = tank2_volume * tank2_api
-
-    cal1_2 = cal_1+cal_2
-    water_mix = tank1_volume + tank2_volume
-    api_mix_total = cal1_2 / water_mix
+    _, api_mix_total = calculate_blend([(tank1_volume, tank1_api), (tank2_volume, tank2_api)])
 
     print(f"ค่า API ที่ผสมกันได้เท่ากับ {api_mix_total}  นะจ๊ะ")
     anykey=input("กด enter เพื่อไปหน้าเเรก")
@@ -67,13 +60,7 @@ def watermix_2():
     tank3_volume = float(input("เเท้งที่3 ใส่จำนวนบาเรลในนี้: "))
     tank3_api = float(input("เเท้งที่3 ใส่ค่า API: "))
 
-    cal_1 = tank1_volume * tank1_api
-    cal_2 = tank2_volume * tank2_api
-    cal_3 = tank3_volume * tank3_api
-
-    cal_mix = cal_1+cal_2+cal_3
-    water_mix = tank1_volume + tank2_volume
-    api_mix_total = cal_mix / water_mix
+    _, api_mix_total = calculate_blend([(tank1_volume, tank1_api), (tank2_volume, tank2_api), (tank3_volume, tank3_api)])
 
     print(f"ค่า API ที่ผสมกันได้เท่ากับ {api_mix_total}  นะจ๊ะ")
     anykey=input("กด enter เพื่อไปหน้าเเรก")
@@ -92,14 +79,7 @@ def watermix_3():
     tank4_volume = float(input("เเท้งที่4 ใส่จำนวนบาเรลในนี้"))
     tank4_api = float(input("เเท้งที่4 ใส่ค่า API : "))
 
-    cal_1 = tank1_volume * tank1_api
-    cal_2 = tank2_volume * tank2_api
-    cal_3 = tank3_volume * tank3_api
-    cal_4 = tank4_volume * tank4_api
-
-    cal_mix = cal_1+cal_2+cal_3+cal_4
-    water_mix = tank1_volume + tank2_volume
-    api_mix_total = cal_mix / water_mix
+    _, api_mix_total = calculate_blend([(tank1_volume, tank1_api), (tank2_volume, tank2_api), (tank3_volume, tank3_api), (tank4_volume, tank4_api)])
 
     print(f"ค่า API ที่ผสมกันได้เท่ากับ {api_mix_total}  นะจ๊ะ")
 

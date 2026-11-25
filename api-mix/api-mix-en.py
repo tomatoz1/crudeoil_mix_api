@@ -1,3 +1,6 @@
+from blend import calculate_blend
+
+
 def mainMenu():
     print("--------------------------------------------")
     print("-------   API mix program  V.1.0  ----------")
@@ -18,25 +21,20 @@ def mainMenu():
 
             if selection == 1:
                 watermix_1()
-                mainMenu()
 
             elif selection == 2:
                 watermix_2()
-                mainMenu()
-                
-            if selection == 3:
+
+            elif selection == 3:
                 watermix_3()
-                mainMenu()
 
             elif selection == 4:
                 break
             else:
-                print("Type number 1-3 only !")
-                mainMenu()
-                mainMenu()
-            
+                print("Type a number from 1 to 4.")
+
         except ValueError:
-                print("Type number 1-3 only !")
+                print("Invalid input: use finite numbers, nonnegative volumes, and a positive combined volume.")
 
 def watermix_1():
     tank1_volume = float(input("<Tank1> put volume of crudeoil : "))
@@ -45,12 +43,7 @@ def watermix_1():
     tank2_volume = float(input("<Tank2> put volume of crudeoil : "))
     tank2_api = float(input("<Tank2> put API : "))
 
-    cal_1 = tank1_volume * tank1_api
-    cal_2 = tank2_volume * tank2_api
-
-    cal1_2 = cal_1+cal_2
-    water_mix = tank1_volume + tank2_volume
-    api_mix_total = cal1_2 / water_mix
+    _, api_mix_total = calculate_blend([(tank1_volume, tank1_api), (tank2_volume, tank2_api)])
 
     print(f"Total of API to mix is {api_mix_total}  ")
     anykey=input("Anykey to homepage")
@@ -67,13 +60,7 @@ def watermix_2():
     tank3_volume = float(input("<Tank3> put volume of crudeoil : "))
     tank3_api = float(input("<Tank3> put API : "))
 
-    cal_1 = tank1_volume * tank1_api
-    cal_2 = tank2_volume * tank2_api
-    cal_3 = tank3_volume * tank3_api
-
-    cal_mix = cal_1+cal_2+cal_3
-    water_mix = tank1_volume + tank2_volume
-    api_mix_total = cal_mix / water_mix
+    _, api_mix_total = calculate_blend([(tank1_volume, tank1_api), (tank2_volume, tank2_api), (tank3_volume, tank3_api)])
 
     print(f"Total of API to mix is {api_mix_total}  ")
     anykey=input("Anykey to homepage")
@@ -92,14 +79,7 @@ def watermix_3():
     tank4_volume = float(input("<Tank4> put volume of crudeoil : "))
     tank4_api = float(input("<Tank4> put API : "))
 
-    cal_1 = tank1_volume * tank1_api
-    cal_2 = tank2_volume * tank2_api
-    cal_3 = tank3_volume * tank3_api
-    cal_4 = tank4_volume * tank4_api
-
-    cal_mix = cal_1+cal_2+cal_3+cal_4
-    water_mix = tank1_volume + tank2_volume
-    api_mix_total = cal_mix / water_mix
+    _, api_mix_total = calculate_blend([(tank1_volume, tank1_api), (tank2_volume, tank2_api), (tank3_volume, tank3_api), (tank4_volume, tank4_api)])
 
     print(f"Total of API to mix is {api_mix_total} ")
 
